@@ -40,20 +40,23 @@ function Beginner() {
             }
         }
     }
+    
     function validCountBlock(p, q, n){ //Assigns count only in the cell is valid
         if(p>=0 && p<n && q>=0 && q<n && grid[p][q]!=='💣')
 		grid[p][q]+=1;
         return;
     }
+    
     const baseButtonColor = "#d0d0d7";
     const flagColor = "rgb(219, 1, 31)";
     useEffect(() => {
         for(let i=0; i<n; i++){
             for(let j=0; j<n; j++){
-                if(grid[i][j]=='💣'){
+                if(grid[i][j]==='💣'){
                     document.querySelector(`.cell-${i}-${j} .cell-text`).style.display = "none";
                 }
                 var cellButton = document.querySelector(`.cell-${i}-${j} .cell-btn`);
+                //Flagging
                 cellButton.addEventListener("contextmenu", function(e){
                     e.preventDefault();
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor == flagColor){
@@ -70,13 +73,16 @@ function Beginner() {
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor = flagColor;
                     }
                 });
+                //Revealing
                 cellButton.addEventListener("click", function(){
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor != flagColor){
                         ifBomb(i, j);
                         //console.log("clickety");
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
                         
-                        document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                        if(grid[i][j] != 0){
+                            document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                        }
                     }
                 });
                 
@@ -84,6 +90,21 @@ function Beginner() {
         }
     })
 
+    //Set grey color to blank tiles
+    useEffect(() => {
+        function blankTiles(){
+            for(let i=0; i<n; i++){
+                for(let j=0; j<n; j++){
+                    if(grid[i][j] == 0){
+                        document.querySelector(`.cell-${i}-${j} .cell-text`).style.backgroundColor = "#b4b4b8";
+                    }
+                }
+            }
+        }
+        blankTiles();
+    })
+    
+    //If Bomb cell is clicked
     function ifBomb(i, j){
         if(grid[i][j] === '💣'){
             const allCellButtons = document.querySelectorAll('.cell-btn');
@@ -96,7 +117,9 @@ function Beginner() {
             });
             for(let i=0; i<n; i++){
                 for(let j=0; j<n; j++){
-                    document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                    if(grid[i][j] != 0){
+                       document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j]; 
+                    }
                 }
             }
         }

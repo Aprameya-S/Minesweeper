@@ -49,7 +49,7 @@ function Master() {
     useEffect(() => {
         for(let i=0; i<n; i++){
             for(let j=0; j<n; j++){
-                if(grid[i][j]=='💣'){
+                if(grid[i][j]==='💣'){
                     document.querySelector(`.cell-${i}-${j} .cell-text`).style.display = "none";
                 }
                 var cellButton = document.querySelector(`.cell-${i}-${j} .cell-btn`);
