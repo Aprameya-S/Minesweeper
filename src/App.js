@@ -38,23 +38,23 @@ function App() {
 			<menu>
 				<h1>Minesweeper</h1>
 				<span>Choose Difficulty:</span>
-				<Link to=":beginner"><button className='beginner-btn' onClick={() => setDifficulty("Beginner")}>Beginner</button></Link>
-				<Link to=":intermediate"><button className='intermediate-btn' onClick={() => setDifficulty("Intermediate")}>Intermediate</button></Link>
-				<Link to=":master"><button className='master-btn' onClick={() => setDifficulty("Master")}>Master</button></Link>
+				<Link to="/beginner"><button className='beginner-btn' onClick={() => setDifficulty("Beginner")}>Beginner</button></Link>
+				<Link to="/intermediate"><button className='intermediate-btn' onClick={() => setDifficulty("Intermediate")}>Intermediate</button></Link>
+				<Link to="/master"><button className='master-btn' onClick={() => setDifficulty("Master")}>Master</button></Link>
 				<div className='details'>
 					<h3>Difficulty:<br/><b>{difficulty}</b></h3>
 					<h3>Grid:<br/><b>{order} x {order}</b></h3>
 					<h3>Number Of Bombs<br/><b>{numberOfBombs}</b></h3>
 					<h3>made by aprameya shankar</h3>
 				</div>
-				<a  href="javascript:location.reload(true)"><button className='restart'>Start Over</button></a>
-				{/* <a><button className='restart' onClick={refresh()}>Start Over</button></a> */}
+				{/* <a  href="javascript:location.reload(true)"><button className='restart'>Start Over</button></a> */}
+				<a><button className='restart' onClick={refresh()}>Start Over</button></a>
 			</menu>
 			<div className='board'>
 				<Routes>
-					<Route path=':beginner' element={<Beginner />} />
-					<Route path=':intermediate' element={<Intermediate />} />
-					<Route path=':master' element={<Master />} />
+					<Route path='/beginner' element={<Beginner />} />
+					<Route path='/intermediate' element={<Intermediate />} />
+					<Route path='/master' element={<Master />} />
 				</Routes>
 			</div>
 		</main>
