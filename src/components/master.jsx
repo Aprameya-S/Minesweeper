@@ -77,9 +77,9 @@ function Master() {
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor != flagColor){
                         ifBomb(i, j);
                         ifBlank(i, j);
-                        //console.log("clickety");
-                        document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
                         
+                        document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
+                        onWin();
                         if(grid[i][j] != 0){
                             document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
                         }
@@ -153,6 +153,25 @@ function Master() {
         }
     }
 
+    function onWin(){
+        let count = 0;
+        for(let i=0; i<n; i++){
+            for(let j=0; j<n; j++){
+                if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display != "none"){
+                    count++;
+                }
+            }
+        }
+        if(count == bombCount){
+            const allCellButtons = document.querySelectorAll('.cell-btn');
+            allCellButtons.forEach((cellButton) => {
+                cellButton.style.display = "none";
+                document.querySelector('.grid').style.pointerEvents = "none";
+                document.querySelector('.winner').style.display = "grid";
+
+            });
+        }
+    }
 
     return (
         <>

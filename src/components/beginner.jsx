@@ -50,6 +50,7 @@ function Beginner() {
     const baseButtonColor = "#d0d0d7";
     const flagColor = "rgb(219, 1, 31)";
     useEffect(() => {
+
         for(let i=0; i<n; i++){
             for(let j=0; j<n; j++){
                 if(grid[i][j]==='💣'){
@@ -78,10 +79,10 @@ function Beginner() {
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor != flagColor){
                         ifBomb(i, j);
                         ifBlank(i, j);
-                        onWin();
+                        
                         //console.log("clickety");
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
-                        
+                        onWin();
                         if(grid[i][j] != 0){
                             document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
                         }
