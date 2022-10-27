@@ -51,6 +51,133 @@ body {
       };
 }
 
+main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    width: 100%;
+    padding: 5vw;
+}
+menu {
+    display: grid;
+    align-content:flex-start;
+    h1 {
+        color: $border-hover-color;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 100px;
+        margin-top: -20px;
+    }
+    span {
+        color: $border-hover-color;
+        font-family: 'Bebas Neue', cursive;
+        font-size: 20px;
+        font-weight: 100;
+        line-height: 0px;
+        margin-bottom: 7px;
+    }
+    a {
+        width: fit-content;
+    }
+    button {
+        width: 250px;
+        height:60px;
+        text-align: left;
+        padding-left: 20px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 0px;
+        border: none;
+        margin-top: 10px;
+        background-color: $cell-bg;
+        color: $cell-bg-hover;
+        border: 1px solid $border-color;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background-color: $cell-bg-hover;
+            color: $text-color;
+        }
+    }
+}
+.board {
+    display: grid;
+    justify-content:end;
+    height: 100%;
+    width: 100%;
+
+    .grid {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        //display: none;
+    }
+    .game-over,
+    .winner {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        
+    }
+}
+.details {
+    background-color: $cell-bg-hover;
+    width: 400px;
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    padding-right: 0px;
+    h3 {
+        font-family: 'Bebas Neue', cursive;
+        font-weight: 100 !important;
+        font-size: 18px;
+        line-height: 1em;
+        margin-bottom: 20px;
+        color: $border-hover-color;
+
+        b {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            color: $text-color;
+            font-size: 16px;
+        }
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            margin-bottom: 0px;
+        }
+        &:nth-of-type(4){
+            color: $cell-bg-hover;
+        }
+    }
+    a {
+        height: fit-content;
+        padding: 0;
+        margin: 0;
+    }
+    button {
+        padding: 20px;
+        height: fit-content;
+        width: fit-content;
+        line-height: 0px;
+    }
+
+}
+footer {
+    bottom: 0px;
+    padding: 10px;
+    text-align: center;
+    border-top: 10px solid $border-hover-color;
+    width: 100vw;
+    background-color: hsla(0, 0, 0, 0.6);
+    color: $cell-bg-hover;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+}
+
 
 .grid {
     //border: 1px solid red;
@@ -120,133 +247,25 @@ body {
            
     }
 }
-
-
-main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 100vh;
+.winner {
+    display: none;
     width: 100%;
-    padding: 5vw;
-}
-menu {
-    display: grid;
-    align-content:flex-start;
-    h1 {
-        color: $border-hover-color;
-        font-family: 'Bebas Neue', cursive;
-        font-size: 100px;
-        margin-top: -20px;
-    }
-    span {
-        color: $border-hover-color;
-        font-family: 'Bebas Neue', cursive;
-        font-size: 20px;
-        font-weight: 100;
-        line-height: 0px;
-        margin-bottom: 7px;
-    }
-    a {
-        width: fit-content;
-    }
-    button {
-        width: 250px;
-        height:60px;
-        text-align: left;
-        padding-left: 20px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        border-radius: 0px;
-        border: none;
-        margin-top: 10px;
-        background-color: $cell-bg;
-        color: $cell-bg-hover;
-        border: 1px solid $border-color;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-            background-color: $cell-bg-hover;
-            color: $text-color;
-        }
-    }
-}
-.board {
-    display: grid;
-    justify-content:end;
     height: 100%;
-    width: 100%;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 100px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
 
-    .grid {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        //display: none;
-    }
-    .game-over {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        
+    span {
+        background-color: rgb(24, 207, 0) !important;
+        padding-inline: 20px;
+           
     }
 }
-.details {
-    background-color: $cell-bg-hover;
-    width: 400px;
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 20px;
-    padding-right: 0px;
-    h3 {
-        font-family: 'Bebas Neue', cursive;
-        font-weight: 100 !important;
-        font-size: 18px;
-        line-height: 1em;
-        margin-bottom: 20px;
-        color: $border-hover-color;
 
-        b {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 500;
-            color: $text-color;
-            font-size: 16px;
-        }
-        &:nth-of-type(3),
-        &:nth-of-type(4) {
-            margin-bottom: 0px;
-        }
-        &:nth-of-type(4){
-            color: $cell-bg-hover;
-        }
-    }
-    a {
-        height: fit-content;
-        padding: 0;
-        margin: 0;
-    }
-    button {
-        padding: 20px;
-        height: fit-content;
-        width: fit-content;
-        line-height: 0px;
-    }
 
-}
-footer {
-    bottom: 0px;
-    padding: 10px;
-    text-align: center;
-    border-top: 10px solid $border-hover-color;
-    width: 100vw;
-    background-color: hsla(0, 0, 0, 0.6);
-    color: $cell-bg-hover;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-}
 
 @media screen and (max-width: 1200px){
     body {
@@ -266,15 +285,31 @@ footer {
 @media screen and (max-width: 600px){
     main {
         padding: 0px;
+
+        menu {
+            padding: 5vw;
+            padding-top: 70px;
+            h1 {
+                font-size: 65px;
+            }
+            button {
+                width: 60vw;
+            }
+            .details {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+        }
+        .board {
+            
+            .grid {
+                width: 100vw;
+                margin-bottom: 0px;
+            }
+        }
+        
     }
-    menu {
-        padding: 5vw;
-        padding-top: 100px;
-    }
-    .board {
-        height: auto;
-        width: 100vw;
-        aspect-ratio: 1;
-        margin-bottom: 100px;
+    footer {
+        margin-top: 50px;
     }
 }

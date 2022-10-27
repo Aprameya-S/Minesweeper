@@ -78,6 +78,7 @@ function Beginner() {
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor != flagColor){
                         ifBomb(i, j);
                         ifBlank(i, j);
+                        onWin();
                         //console.log("clickety");
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
                         
@@ -153,7 +154,26 @@ function Beginner() {
             ifValid(i-1, j-1);
         }
     }
+    //ON winning
+    function onWin(){
+        let count = 0;
+        for(let i=0; i<n; i++){
+            for(let j=0; j<n; j++){
+                if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display != "none"){
+                    count++;
+                }
+            }
+        }
+        if(count == bombCount){
+            const allCellButtons = document.querySelectorAll('.cell-btn');
+            allCellButtons.forEach((cellButton) => {
+                cellButton.style.display = "none";
+                document.querySelector('.grid').style.pointerEvents = "none";
+                document.querySelector('.winner').style.display = "grid";
 
+            });
+        }
+    }
 
     return (
         <>
@@ -169,6 +189,7 @@ function Beginner() {
                     </div>
                 ))}
             </div>
+            <div className='winner'><span>You Win!</span></div>
             <div className='game-over'><span>Game Over</span></div>
         </>
     )

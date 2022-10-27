@@ -2,3 +2,9 @@
     height: 26px;
     width: 26px;
 }
+@media screen and (max-width: 600px){
+    .master-cell {
+        aspect-ratio: 1;
+        width: 100%;
+    }
+}
