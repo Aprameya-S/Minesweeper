@@ -39,11 +39,13 @@ function Master() {
             }
         }
     }
-    function validCountBlock(p, q, n){ //Assigns count only in the cell is valid
+    //Assigns count only in the cell is valid
+    function validCountBlock(p, q, n){ 
         if(p>=0 && p<n && q>=0 && q<n && grid[p][q]!=='💣')
 		grid[p][q]+=1;
         return;
     }
+    
     const baseButtonColor = "#d0d0d7";
     const flagColor = "rgb(219, 1, 31)";
     useEffect(() => {
@@ -53,6 +55,7 @@ function Master() {
                     document.querySelector(`.cell-${i}-${j} .cell-text`).style.display = "none";
                 }
                 var cellButton = document.querySelector(`.cell-${i}-${j} .cell-btn`);
+                //Flagging
                 cellButton.addEventListener("contextmenu", function(e){
                     e.preventDefault();
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor == flagColor){
@@ -69,38 +72,87 @@ function Master() {
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor = flagColor;
                     }
                 });
+                //Revealing
                 cellButton.addEventListener("click", function(){
                     if(document.querySelector(`.cell-${i}-${j} .cell-btn`).style.backgroundColor != flagColor){
                         ifBomb(i, j);
+                        ifBlank(i, j);
                         //console.log("clickety");
                         document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";    
                         
-                        document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                        if(grid[i][j] != 0){
+                            document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                        }
                     }
                 });
                 
             }
         }
+
     })
 
+    //Set grey color to blank tiles
+    useEffect(() => {
+        function blankTiles(){
+            for(let i=0; i<n; i++){
+                for(let j=0; j<n; j++){
+                    if(grid[i][j] == 0){
+                        document.querySelector(`.cell-${i}-${j} .cell-text`).style.backgroundColor = "#b4b4b8";
+                    }
+                }
+            }
+        }
+        blankTiles();
+    })
+    
+    //If Bomb cell is clicked
     function ifBomb(i, j){
         if(grid[i][j] === '💣'){
             const allCellButtons = document.querySelectorAll('.cell-btn');
             allCellButtons.forEach((cellButton) => {
                 cellButton.style.display = "none";
                 document.querySelector('.grid').style.pointerEvents = "none";
-                document.querySelector('.game-over').style.display = "none";
+                document.querySelector('.game-over').style.display = "grid";
                 document.querySelector(`.cell-${i}-${j} .cell-text`).style.display = "none";
 
             });
             for(let i=0; i<n; i++){
                 for(let j=0; j<n; j++){
-                    document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+                    if(grid[i][j] != 0){
+                       document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j]; 
+                    }
                 }
             }
         }
         return;
     }
+    
+    //Recursively reveal surrounding cells if blank cell is clicked
+    function revealIfNotBlank(i, j){
+        if(grid[i][j]!=0){
+            document.querySelector(`.cell-${i}-${j} .cell-text`).innerText = grid[i][j];
+        }
+    }
+    function ifValid(i, j){
+        if(i>=0 && i<n && j>=0 && j<n && document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display != "none"){
+            document.querySelector(`.cell-${i}-${j} .cell-btn`).style.display = "none";
+            revealIfNotBlank(i, j);
+            ifBlank(i, j);
+        }
+    }
+    function ifBlank(i, j){
+        if(grid[i][j]==0){
+            ifValid(i-1, j);
+            ifValid(i-1, j+1);
+            ifValid(i, j+1);
+            ifValid(i+1, j+1);
+            ifValid(i+1, j);
+            ifValid(i+1, j-1);
+            ifValid(i, j-1);
+            ifValid(i-1, j-1);
+        }
+    }
+
 
     return (
         <>
@@ -120,5 +172,4 @@ function Master() {
         </>
     )
 }
-
 export default Master;
