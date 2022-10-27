@@ -47,8 +47,8 @@ function App() {
 					<h3>Number Of Bombs<br/><b>{numberOfBombs}</b></h3>
 					<h3>made by aprameya shankar</h3>
 				</div>
-				{/* <a  href="javascript:location.reload(true)"><button className='restart'>Start Over</button></a> */}
-				<a><button className='restart' onClick={refresh()}>Start Over</button></a>
+				<a  href="javascript:location.reload(true)"><button className='restart'>Start Over</button></a>
+				{/*<a><button className='restart' onClick={refresh()}>Start Over</button></a> */}
 			</menu>
 			<div className='board'>
 				<Routes>
